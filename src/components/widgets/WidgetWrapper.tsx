@@ -1,23 +1,24 @@
 import React from 'react';
 import { Button } from '../ui/button';
-import {OptionTypes} from '../../types';
-import { v4 as uuidv4 } from 'uuid';
+import { WidgetTypes } from '../../types';
+import { useBoundStore } from '@/store/store';
+import { useDroppableSlice } from '@/redux/hooks';
 
 type Props = {
   children: React.ReactNode;
   setIsSaved: React.Dispatch<React.SetStateAction<boolean>>;
   variant?: 'default' | 'mcq';
-  setOptionsCount?: React.Dispatch<React.SetStateAction<OptionTypes[]>>;
-  optionsCount?: OptionTypes[];
+  widget: WidgetTypes;
 };
 
 const WidgetWrapper = ({
   children,
   setIsSaved,
   variant = 'default',
-  setOptionsCount,
-  optionsCount
+  widget,
 }: Props) => {
+  const {addNewOptionToQuestion, dispatch} = useDroppableSlice()
+
   return (
     <div className='flex flex-col w-full gap-3'>
       {children}
@@ -25,7 +26,7 @@ const WidgetWrapper = ({
         {variant === 'mcq' && (
           <Button
             variant={'outline'}
-            onClick={() => setOptionsCount([...optionsCount, {id: uuidv4()}])}
+            onClick={() => dispatch(addNewOptionToQuestion(widget.id))}
           >
             Add another option
           </Button>

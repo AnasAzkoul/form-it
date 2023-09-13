@@ -1,36 +1,33 @@
-import React, {use} from 'react';
+import React from 'react';
 import { Button } from '../ui/button';
 import CloseIcon from '../icons/Close';
 import { WidgetTypes, WidgetVariantsType } from '../../types';
 import YesNoQuestion from '../widgets/YesNoQuestion';
 import MultipleChoiceQuestion from '../widgets/MultipleChoiceQuestion';
 import QuestionWithTextBox from '../widgets/QuestionWithTextBox';
-import useDroppableStore from '@/store/droppable_store';
+import { useDroppableSlice } from '@/redux/hooks';
 
 type Props = {
   widget: WidgetTypes;
 };
 
-const widgetComponents = {
-  'multiple choice question': MultipleChoiceQuestion,
-  'yes/no question': YesNoQuestion,
-  'question with text box': QuestionWithTextBox,
-};
+const DroppableWidget = ({ widget }: Props) => {
+  const { deleteWidget, dispatch } = useDroppableSlice();
 
-const DroppableWidget = ({ widget}: Props) => {
-  const CurrentView = widgetComponents[widget.variant];
-  const {handleDeleteWidget} = useDroppableStore();
   return (
-    <div
-      key={widget.id}
-      className='flex flex-col justify-between gap-4 px-6 py-4 bg-slate-500 rounded-xl'
-    >
+    <div className='flex flex-col justify-between gap-4 px-6 py-4 bg-slate-500 rounded-xl'>
       <div className='flex items-center justify-end'>
-        <Button onClick={() => handleDeleteWidget(widget.id)}>
+        <Button onClick={() => dispatch(deleteWidget(widget.id))}>
           <CloseIcon />
         </Button>
       </div>
-      <CurrentView />
+      {widget.variant === WidgetVariantsType.MULTIPLE_CHOICE_QUESTION ? (
+        <MultipleChoiceQuestion widget={widget} />
+      ) : widget.variant === WidgetVariantsType.YES_NO_QUESTION ? (
+        <YesNoQuestion widget={widget} />
+      ) : (
+        <QuestionWithTextBox widget={widget} />
+      )}
     </div>
   );
 };

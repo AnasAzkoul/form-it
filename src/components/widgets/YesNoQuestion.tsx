@@ -1,19 +1,25 @@
 'use client';
 /* eslint-disable react/no-unescaped-entities */
-import React, { use } from 'react';
-import { Input } from '@/components/ui/input';
+import React from 'react';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-
 import WidgetWrapper from './WidgetWrapper';
 import { useWidget } from '@/hooks/useWidget';
 import QuestionInput from './QuestionInput';
+import { WidgetTypes } from '@/types';
 
-const YesNoQuestion = () => {
+type Props = {
+  widget: WidgetTypes;
+};
+
+const YesNoQuestion = ({ widget }: Props) => {
   const { isSaved, setIsSaved, question, setQuestion } = useWidget();
 
   return (
-    <WidgetWrapper setIsSaved={setIsSaved}>
+    <WidgetWrapper
+      setIsSaved={setIsSaved}
+      widget={widget}
+    >
       {isSaved ? (
         <p className='text-gray-300 capitalize'>{question}</p>
       ) : (

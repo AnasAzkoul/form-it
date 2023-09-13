@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import classNames from 'classnames';
+import { Providers } from '../redux/provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,7 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={classNames(inter.className, 'bg-slate-800 text-gray-200')}>{children}</body>
+      <body
+        className={classNames(inter.className, 'bg-slate-800 text-gray-200')}
+      >
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

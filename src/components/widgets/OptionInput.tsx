@@ -10,17 +10,10 @@ import type { OptionTypes } from '../../types';
 
 type Props = {
   id: string;
-  optionsCount: OptionTypes[];
-  setOptionsCount: React.Dispatch<React.SetStateAction<OptionTypes[]>>;
 };
 
-const OptionInput = ({ id, optionsCount, setOptionsCount }: Props) => {
+const OptionInput = ({ id }: Props) => {
   const { question, setQuestion, isSaved, setIsSaved } = useWidget();
-
-  const deleteOption = (id: string) => {
-    const filteredOptions = optionsCount.filter(option => option.id !== id);
-    setOptionsCount(filteredOptions)
-  };
 
   return (
     <div className='flex items-center gap-2 relative group'>
@@ -45,7 +38,6 @@ const OptionInput = ({ id, optionsCount, setOptionsCount }: Props) => {
           className='border-none text-red-800 p-0 hover:bg-transparent hover:text-red-950'
           variant='outline'
           size='sm'
-          onClick={() => deleteOption(id)}
         >
           <CloseIcon />
         </Button>
