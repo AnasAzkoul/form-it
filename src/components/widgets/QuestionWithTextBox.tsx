@@ -1,19 +1,22 @@
 import React from 'react';
-import WidgetWrapper from './WidgetWrapper';
+import WidgetWrapper from './ui/WidgetWrapper';
 import { useWidget } from '@/hooks/useWidget';
 import { Input } from '../ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import QuestionInput from './QuestionInput';
-import {WidgetTypes} from '@/types';
+import QuestionInput from './ui/QuestionInput';
+import { WidgetTypes } from '@/types';
 
 type Props = {
   widget: WidgetTypes;
 };
 
-const QuestionWithTextBox = ({widget}: Props) => {
+const QuestionWithTextBox = ({ widget }: Props) => {
   const { isSaved, question, setIsSaved, setQuestion } = useWidget();
   return (
-    <WidgetWrapper setIsSaved={setIsSaved} widget={widget}>
+    <WidgetWrapper
+      setIsSaved={setIsSaved}
+      widget={widget}
+    >
       {isSaved ? (
         <p>{question}</p>
       ) : (

@@ -1,4 +1,5 @@
 import {
+  WidgetType,
   WidgetVariantsType,
   ChoiceType,
   MultipleChoiceQuestionType,
@@ -13,51 +14,57 @@ export class Choice implements ChoiceType {
 
   constructor() {
     this.id = uuidv4();
-    this.label = ''
+    this.label = '';
   }
 }
 
-export class MultipleChoiceQuestion implements MultipleChoiceQuestionType {
+class Widget implements WidgetType{
   id: string;
+  question: string;
+  isSaved: boolean;
+
+  constructor() {
+    this.id = uuidv4();
+    this.question = '';
+    this.isSaved = false; 
+  }
+}
+
+export class MultipleChoiceQuestion
+  extends Widget
+  implements MultipleChoiceQuestionType
+{
   variant: WidgetVariantsType.MULTIPLE_CHOICE_QUESTION;
-  question: string;
-  choices: { id: string; label: string }[];
+  choices: ChoiceType[];
 
   constructor() {
-    this.id = uuidv4();
+    super();
     this.variant = WidgetVariantsType.MULTIPLE_CHOICE_QUESTION;
-    this.question = '';
-    this.choices = [{id: uuidv4(), label: ''}];
+    this.choices = [{ id: uuidv4(), label: '' }];
   }
 }
 
-export class YesNoQuestion implements YesNoQuestionType {
-  id: string;
+export class YesNoQuestion extends Widget implements YesNoQuestionType {
   variant: WidgetVariantsType.YES_NO_QUESTION;
-  question: string;
-  choice: [{ id: string; label: string }, { id: string; label: string }];
+  choice: [ChoiceType, ChoiceType];
 
   constructor() {
-    this.id = uuidv4();
+    super();
     this.variant = WidgetVariantsType.YES_NO_QUESTION;
-    this.question = '';
-    this.choice = [
-      { id: uuidv4(), label: '' },
-      { id: uuidv4(), label: '' },
-    ];
+    this.choice = [new Choice(), new Choice()];
   }
 }
 
-export class QuestionWithTextBox implements QuestionWithTextBoxType {
-  id: string;
+export class QuestionWithTextBox
+  extends Widget
+  implements QuestionWithTextBoxType
+{
   variant: WidgetVariantsType.QUESTION_WITH_TEXT_BOX;
-  question: string;
   answer: string;
 
   constructor() {
-    this.id = uuidv4();
+    super();
     this.variant = WidgetVariantsType.QUESTION_WITH_TEXT_BOX;
-    this.question = '';
     this.answer = '';
   }
 }

@@ -1,34 +1,27 @@
 'use client';
-import React, { useState } from 'react';
-import WidgetWrapper from './WidgetWrapper';
-import { useWidget } from '@/hooks/useWidget';
+import React from 'react';
+import WidgetWrapper from './ui/WidgetWrapper';
 import type { WidgetTypes, MultipleChoiceQuestionType } from '../../types';
 import { RadioGroup } from '@/components/ui/radio-group';
-
-import OptionInput from './OptionInput';
-import QuestionInput from './QuestionInput';
+import OptionInput from './ui/OptionInput';
+import QuestionInput from './ui/QuestionInput';
 
 type Props = {
-  widget: WidgetTypes
-}
+  widget: WidgetTypes;
+};
 
-const MultipleChoiceQuestion = ({widget}: Props) => {
-  const { isSaved, setIsSaved, setQuestion } = useWidget();
-  const {choices, question} = widget as MultipleChoiceQuestionType;
-
-
+const MultipleChoiceQuestion = ({ widget }: Props) => {
+  const { choices, question } = widget as MultipleChoiceQuestionType;
 
   return (
     <WidgetWrapper
-      setIsSaved={setIsSaved}
-      variant='mcq'
       widget={widget}
     >
-      {isSaved ? (
+      {widget.isSaved ? (
         <p>{question}</p>
       ) : (
         <QuestionInput
-          onChange={(e) => setQuestion(e.target.value)}
+          // onChange={(e) => setQuestion(e.target.value)}
           value={question}
         />
       )}

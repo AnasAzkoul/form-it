@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { Input } from '../ui/input';
+import { Input } from '../../ui/input';
 import { useWidget } from '@/hooks/useWidget';
-import { Button } from '../ui/button';
-import CloseIcon from '../icons/Close';
-import TickIcon from '../icons/Tick';
-import type { OptionTypes } from '../../types';
 
 type Props = {
   id: string;
@@ -32,24 +28,6 @@ const OptionInput = ({ id }: Props) => {
           onChange={(e) => setQuestion(e.target.value)}
         />
       )}
-
-      <div className='absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2'>
-        <Button
-          className='border-none text-red-800 p-0 hover:bg-transparent hover:text-red-950'
-          variant='outline'
-          size='sm'
-        >
-          <CloseIcon />
-        </Button>
-        <Button
-          variant='outline'
-          size='sm'
-          className='border-none text-green-800 p-0 hover:bg-transparent hover:text-green-950'
-          onClick={() => setIsSaved(true)}
-        >
-          <TickIcon />
-        </Button>
-      </div>
     </div>
   );
 };

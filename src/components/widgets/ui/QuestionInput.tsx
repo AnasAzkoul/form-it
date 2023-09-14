@@ -1,5 +1,5 @@
 import React, { ComponentProps } from 'react';
-import { Input } from '../ui/input';
+import { Input } from '../../ui/input';
 
 interface Props extends ComponentProps<typeof Input> {}
 

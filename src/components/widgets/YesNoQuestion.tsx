@@ -3,9 +3,9 @@
 import React from 'react';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import WidgetWrapper from './WidgetWrapper';
+import WidgetWrapper from './ui/WidgetWrapper';
 import { useWidget } from '@/hooks/useWidget';
-import QuestionInput from './QuestionInput';
+import QuestionInput from './ui/QuestionInput';
 import { WidgetTypes } from '@/types';
 
 type Props = {

@@ -7,28 +7,28 @@ export enum WidgetVariantsType {
 export interface ChoiceType {
   id: string;
   label: string;
-};
+}
 
-export interface MultipleChoiceQuestionType  {
+export interface WidgetType {
   id: string;
+  question: string;
+  isSaved: boolean;
+}
+
+export interface MultipleChoiceQuestionType extends WidgetType {
   variant: WidgetVariantsType.MULTIPLE_CHOICE_QUESTION;
-  question: string;
   choices: ChoiceType[];
-};
+}
 
-export interface YesNoQuestionType {
-  id: string;
+export interface YesNoQuestionType extends WidgetType {
   variant: WidgetVariantsType.YES_NO_QUESTION;
-  question: string;
   choice: [ChoiceType, ChoiceType];
-};
+}
 
-export interface QuestionWithTextBoxType {
-  id: string;
+export interface QuestionWithTextBoxType extends WidgetType {
   variant: WidgetVariantsType.QUESTION_WITH_TEXT_BOX;
-  question: string;
   answer: string;
-};
+}
 
 export type WidgetTypes =
   | MultipleChoiceQuestionType
@@ -37,6 +37,3 @@ export type WidgetTypes =
 
 export type WidgetMenuItem = Pick<WidgetTypes, 'variant'>;
 
-export type OptionTypes = {
-  id: string;
-};
