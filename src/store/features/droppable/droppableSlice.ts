@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { WidgetTypes, WidgetVariantsType } from '../../../types';
+import type {
+  WidgetTypes,
+  SaveWidgetPayloadType,
+  MultipleChoiceQuestionType,
+} from '../../../types';
+import { WidgetVariantsType } from '../../../types';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface DroppableStateType {
@@ -45,10 +50,13 @@ export const DroppableSlice = createSlice({
         }
       });
     },
-    saveWidgetData: (state, action: PayloadAction<string>) => {
+    saveWidgetData: (state, action: PayloadAction<SaveWidgetPayloadType>) => {
       state.widgets.forEach((widget) => {
-        if (widget.id === action.payload) {
+        if (widget.id === action.payload.id) {
           widget.isSaved = true;
+          widget.widgetQuestion = action.payload.widgetQuestion;
+          // @ts-ignore
+          widget.choices = action.payload.choices
         }
       });
     },
@@ -68,7 +76,7 @@ export const {
   addNewOptionToQuestion,
   deleteOption,
   saveWidgetData,
-  editWidgetData, 
+  editWidgetData,
 } = DroppableSlice.actions;
 
 export default DroppableSlice.reducer;

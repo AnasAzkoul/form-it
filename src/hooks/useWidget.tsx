@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import {MultipleChoiceQuestionType, YesNoQuestionType, QuestionWithTextBoxType} from '../types';
 
 export function useWidget() {
-  const [isSaved, setIsSaved] = useState(false);
   const [question, setQuestion] = useState('');
 
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+
+    setQuestion(e.target.value);
+  };
+
   return {
-    isSaved,
-    setIsSaved,
     question,
     setQuestion,
+    handleOnChange
   };
 }

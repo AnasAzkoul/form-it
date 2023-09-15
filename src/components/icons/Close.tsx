@@ -11,7 +11,7 @@ const CloseIcon = ({ className }: IconProps) => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={classNames('h-6 w-6', `${className}`)}
+      className={classNames('h-5 w-5', `${className}`)}
     >
       <path
         strokeLinecap='round'

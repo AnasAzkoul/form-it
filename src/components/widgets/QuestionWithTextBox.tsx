@@ -1,5 +1,5 @@
 import React from 'react';
-import WidgetWrapper from './ui/WidgetWrapper';
+import WidgetWrapper from './ui/WidgetControlPanel';
 import { useWidget } from '@/hooks/useWidget';
 import { Input } from '../ui/input';
 import { Textarea } from '@/components/ui/textarea';

@@ -14,7 +14,7 @@ const DraggableWidget = ({ widget }: Props) => {
       draggable
       onDragStart={(e) => handleOnDragStart(e, widget.variant)}
     >
-      <span className='text-sm tracking-widest'>{widget.variant}</span>
+      <span className='text-xs tracking-widest'>{widget.variant}</span>
       <DragIcon />
     </span>
   );

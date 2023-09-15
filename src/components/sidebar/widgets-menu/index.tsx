@@ -6,7 +6,7 @@ import DraggableWidget from './DraggableWidget';
 const WidgetsMenu = () => {
   return (
     <div>
-      <MainCategory>Drag a component</MainCategory>
+      <MainCategory>choose a component</MainCategory>
       <ul>
         {widgetMenuItems.map((widget, index) => (
           <li key={index}>

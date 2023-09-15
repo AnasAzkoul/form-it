@@ -1,3 +1,5 @@
+import {Choice} from './lib/WidgetClasses';
+
 export enum WidgetVariantsType {
   MULTIPLE_CHOICE_QUESTION = 'multiple choice question',
   YES_NO_QUESTION = 'yes/no question',
@@ -11,7 +13,7 @@ export interface ChoiceType {
 
 export interface WidgetType {
   id: string;
-  question: string;
+  widgetQuestion: string;
   isSaved: boolean;
 }
 
@@ -37,3 +39,12 @@ export type WidgetTypes =
 
 export type WidgetMenuItem = Pick<WidgetTypes, 'variant'>;
 
+type OptionsType = {
+  [name: string]: string;
+};
+
+export type SaveWidgetPayloadType = {
+  id: string;
+  widgetQuestion: string;
+  choices: ChoiceType[];
+};

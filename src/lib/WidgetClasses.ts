@@ -20,13 +20,13 @@ export class Choice implements ChoiceType {
 
 class Widget implements WidgetType{
   id: string;
-  question: string;
+  widgetQuestion: string;
   isSaved: boolean;
 
   constructor() {
     this.id = uuidv4();
-    this.question = '';
-    this.isSaved = false; 
+    this.widgetQuestion = '';
+    this.isSaved = false;
   }
 }
 

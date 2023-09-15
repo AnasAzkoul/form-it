@@ -10,7 +10,7 @@ type Props = {
 
 const DroppableWidget = ({ widget }: Props) => {
   return (
-    <div className='flex flex-col justify-between gap-4 px-6 py-4 bg-slate-500 rounded-xl'>
+    <div className='flex flex-col justify-between gap-4 px-5 py-4 bg-slate-500 rounded-xl'>
       {widget.variant === WidgetVariantsType.MULTIPLE_CHOICE_QUESTION ? (
         <MultipleChoiceQuestion widget={widget} />
       ) : widget.variant === WidgetVariantsType.YES_NO_QUESTION ? (
