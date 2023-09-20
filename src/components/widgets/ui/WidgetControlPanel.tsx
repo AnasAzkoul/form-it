@@ -3,15 +3,12 @@ import { Button } from '../../ui/button';
 import { WidgetTypes, WidgetVariantsType } from '../../../types';
 import { useDroppableSlice } from '@/store/hooks';
 import CloseIcon from '../../icons/Close';
-import { Separator } from '@/components/ui/separator';
 
-interface WidgetControlPanelProps{
+interface WidgetControlPanelProps {
   widget: WidgetTypes;
-};
+}
 
-const WidgetControlPanel = ({
-  widget,
-}: WidgetControlPanelProps) => {
+const WidgetControlPanel = ({ widget }: WidgetControlPanelProps) => {
   const {
     dispatch,
     deleteWidget,
@@ -47,13 +44,6 @@ const WidgetControlPanel = ({
         )}
 
         <Button
-          onClick={() => dispatch(editWidgetData(widget.id))}
-          className='text-xs'
-        >
-          Edit
-        </Button>
-
-        <Button
           onClick={() => dispatch(deleteWidget(widget.id))}
           className='bg-red-600 hover:bg-red-800 text-xs p-1'
           size='icon'
@@ -61,9 +51,6 @@ const WidgetControlPanel = ({
         >
           <CloseIcon />
         </Button>
-      </div>
-      <div className='flex justify-end'>
-        <Separator className='w-[90%] bg-gray-400/50 h-0.5 rounded-md' />
       </div>
     </>
   );
