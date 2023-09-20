@@ -56,7 +56,8 @@ export const DroppableSlice = createSlice({
           widget.isSaved = true;
           widget.widgetQuestion = action.payload.widgetQuestion;
           // @ts-ignore
-          widget.choices = action.payload.choices
+          widget.choices = action.payload.choices;
+          localStorage.setItem('widgets', JSON.stringify(state)); 
         }
       });
     },

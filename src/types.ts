@@ -1,5 +1,3 @@
-import {Choice} from './lib/WidgetClasses';
-
 export enum WidgetVariantsType {
   MULTIPLE_CHOICE_QUESTION = 'multiple choice question',
   YES_NO_QUESTION = 'yes/no question',

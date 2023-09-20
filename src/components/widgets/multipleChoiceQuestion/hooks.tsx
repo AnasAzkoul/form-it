@@ -1,13 +1,18 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { OptionsType } from './types';
 import { useDroppableSlice } from '@/store/hooks';
-import { WidgetTypes } from '@/types';
+import { WidgetTypes, MultipleChoiceQuestionType } from '@/types';
 
 export const usePreSaveMCQWidget = (widget: WidgetTypes) => {
-  const [question, setQuestion] = useState('');
-  const [options, setOptions] = useState<OptionsType>({});
   const { dispatch, saveWidgetData, widgets } = useDroppableSlice();
+  const currentWidget = widgets.find(
+    (item) => item.id === widget.id
+  ) as MultipleChoiceQuestionType;
+
+  const [question, setQuestion] = useState<string>(
+    currentWidget.widgetQuestion
+  );
+  const [options, setOptions] = useState<OptionsType>({});
 
   const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,16 +37,11 @@ export const usePreSaveMCQWidget = (widget: WidgetTypes) => {
     dispatch(saveWidgetData(payload));
   };
 
-  useEffect(() => {
-    console.log(widgets);
-  }, [widgets]);
-
-
-  return ({
+  return {
     handleSaveWidgetData,
     handleOptionChange,
     setQuestion,
     question,
-    options
-  })
+    options,
+  };
 };

@@ -26,7 +26,7 @@ function PostSaveMCQ({ widget }: Props) {
         </CardDescription>
       </CardHeader>
 
-      <CardContent className='mt-5'>
+      <CardContent className='mt-3'>
         <form>
           <RadioGroup>
             <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
