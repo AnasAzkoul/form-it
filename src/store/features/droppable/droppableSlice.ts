@@ -1,19 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice,  } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { WidgetVariantsType } from '../../../types';
+import { v4 as uuidv4 } from 'uuid';
 import type {
   WidgetTypes,
   SaveWidgetPayloadType,
-  MultipleChoiceQuestionType,
 } from '../../../types';
-import { WidgetVariantsType } from '../../../types';
-import { v4 as uuidv4 } from 'uuid';
+import {LocalStorageItems, DroppableStateType} from './types';
+import {getInitialStateFromLocalStorage} from './helpers'
 
-export interface DroppableStateType {
-  widgets: WidgetTypes[];
-}
 
 export const initialState: DroppableStateType = {
-  widgets: [],
+  widgets: getInitialStateFromLocalStorage() as WidgetTypes[]
 };
 
 export const DroppableSlice = createSlice({
@@ -28,6 +26,10 @@ export const DroppableSlice = createSlice({
         (widget) => widget.id !== action.payload
       );
       state.widgets = filteredWidgets;
+      window.localStorage.setItem(
+        LocalStorageItems.Widgets,
+        JSON.stringify(state)
+      );
     },
     addNewOptionToQuestion: (state, action: PayloadAction<string>) => {
       state.widgets.forEach((widget) => {
@@ -57,7 +59,10 @@ export const DroppableSlice = createSlice({
           widget.widgetQuestion = action.payload.widgetQuestion;
           // @ts-ignore
           widget.choices = action.payload.choices;
-          localStorage.setItem('widgets', JSON.stringify(state)); 
+          localStorage.setItem(
+            LocalStorageItems.Widgets,
+            JSON.stringify(state)
+          );
         }
       });
     },

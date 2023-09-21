@@ -4,7 +4,8 @@ import {
   addNewOptionToQuestion,
   deleteOption,
   saveWidgetData,
-  editWidgetData
+  editWidgetData,
+  
 } from './features/droppable/droppableSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -22,6 +23,7 @@ export const useDroppableSlice = () => {
     addNewOptionToQuestion,
     deleteOption,
     saveWidgetData,
-    editWidgetData
+    editWidgetData,
+    
   };
 };
