@@ -1,17 +1,13 @@
-import { createSlice,  } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { WidgetVariantsType } from '../../../types';
 import { v4 as uuidv4 } from 'uuid';
-import type {
-  WidgetTypes,
-  SaveWidgetPayloadType,
-} from '../../../types';
-import {LocalStorageItems, DroppableStateType} from './types';
-import {getInitialStateFromLocalStorage} from './helpers'
-
+import type { WidgetTypes, SaveWidgetPayloadType } from '../../../types';
+import { LocalStorageItems, DroppableStateType } from './types';
+import { getInitialStateFromLocalStorage } from './helpers';
 
 export const initialState: DroppableStateType = {
-  widgets: getInitialStateFromLocalStorage() as WidgetTypes[]
+  widgets: getInitialStateFromLocalStorage() as WidgetTypes[] || [],
 };
 
 export const DroppableSlice = createSlice({
@@ -51,6 +47,10 @@ export const DroppableSlice = createSlice({
           widget.choices.pop();
         }
       });
+      window.localStorage.setItem(
+        LocalStorageItems.Widgets,
+        JSON.stringify(state)
+      );
     },
     saveWidgetData: (state, action: PayloadAction<SaveWidgetPayloadType>) => {
       state.widgets.forEach((widget) => {
@@ -72,6 +72,7 @@ export const DroppableSlice = createSlice({
           widget.isSaved = false;
         }
       });
+      localStorage.setItem(LocalStorageItems.Widgets, JSON.stringify(state));
     },
   },
 });

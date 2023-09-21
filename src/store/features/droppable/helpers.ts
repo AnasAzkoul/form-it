@@ -3,7 +3,7 @@ import {WidgetTypes} from '../../../types'
 
 
 export const getInitialStateFromLocalStorage = () => {
-  let data: { widgets: WidgetTypes[] } | null;
+  let data: { widgets: WidgetTypes[] } ;
   if (typeof window !== undefined) {
     const widgetsJson = localStorage.getItem(LocalStorageItems.Widgets);
     if (widgetsJson !== null) {
@@ -12,4 +12,3 @@ export const getInitialStateFromLocalStorage = () => {
     }
   }
 };
-

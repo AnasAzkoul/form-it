@@ -1,4 +1,5 @@
 'use client';
+import { useEffect } from 'react';
 import WidgetControlPanel from '../ui/WidgetControlPanel';
 import OptionInput from '../ui/OptionInput';
 import QuestionInput from '../ui/QuestionInput';
@@ -15,6 +16,7 @@ import {
 } from '@/components/ui/card';
 import { Separator } from '@radix-ui/react-separator';
 
+
 function PreSaveMCQ({ widget }: Props) {
   const {
     handleSaveWidgetData,
@@ -24,6 +26,10 @@ function PreSaveMCQ({ widget }: Props) {
     options,
   } = usePreSaveMCQWidget(widget);
   const { choices } = widget as MultipleChoiceQuestionType;
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <Card className='bg-primary text-input'>
