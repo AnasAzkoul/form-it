@@ -22,10 +22,6 @@ export const DroppableSlice = createSlice({
         (widget) => widget.id !== action.payload
       );
       state.widgets = filteredWidgets;
-      window.localStorage.setItem(
-        LocalStorageItems.Widgets,
-        JSON.stringify(state)
-      );
     },
     addNewOptionToQuestion: (state, action: PayloadAction<string>) => {
       state.widgets.forEach((widget) => {
@@ -47,10 +43,6 @@ export const DroppableSlice = createSlice({
           widget.choices.pop();
         }
       });
-      window.localStorage.setItem(
-        LocalStorageItems.Widgets,
-        JSON.stringify(state)
-      );
     },
     saveWidgetData: (state, action: PayloadAction<SaveWidgetPayloadType>) => {
       state.widgets.forEach((widget) => {
@@ -59,10 +51,6 @@ export const DroppableSlice = createSlice({
           widget.widgetQuestion = action.payload.widgetQuestion;
           // @ts-ignore
           widget.choices = action.payload.choices;
-          localStorage.setItem(
-            LocalStorageItems.Widgets,
-            JSON.stringify(state)
-          );
         }
       });
     },
@@ -72,7 +60,6 @@ export const DroppableSlice = createSlice({
           widget.isSaved = false;
         }
       });
-      localStorage.setItem(LocalStorageItems.Widgets, JSON.stringify(state));
     },
   },
 });
